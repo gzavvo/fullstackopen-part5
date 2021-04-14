@@ -18,7 +18,6 @@ const App = () => {
     blogService.getAll().then(blogs =>
       setBlogs(blogs)
     )  
-    console.log(blogs)
   }, [])
 
   useEffect(() => {
@@ -91,8 +90,7 @@ const App = () => {
     <div>
       <h2>blogs</h2>
       <Notification message={notification} type={notificationType}/>
-      <p> {user.name} is logged in</p>
-      <button onClick={handleLogout}>log out</button>
+      <p> {user.name} is logged in <button onClick={handleLogout}>log out</button> </p>
       <Togglable buttonLabel='add blog'ref={blogFormRef}>
         <BlogForm handleCreateBlog={handleCreateBlog} />
       </Togglable>
