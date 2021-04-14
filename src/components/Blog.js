@@ -4,6 +4,7 @@ import blogService from '../services/blogs'
 const Blog = ({ blog }) => {
   const [likes, setLikes] = useState(blog.likes)
   const [areDetailsVisible, setAreDetailsVisible] = useState(false)
+  const [isRemoved, setIsRemoved] = useState(false)
 
   const toggleView = () => {
     setAreDetailsVisible(!areDetailsVisible)
@@ -22,6 +23,17 @@ const Blog = ({ blog }) => {
     setLikes(likes + 1)
   }
 
+  const removeBlog = async (event) => {
+    if (window.confirm(`Do you really want to remove the blog ${blog.title}?`)) {
+      await blogService.remove(blog.id)
+      setIsRemoved(true)
+    }
+  }
+
+  if (isRemoved) {
+    return null
+  }
+
   if (areDetailsVisible) {
     return (
       <div className='blog'>
@@ -29,7 +41,8 @@ const Blog = ({ blog }) => {
         <button onClick={toggleView}>hide</button><br />
         <a href={blog.url}>{blog.url}</a><br />
         {likes}<button onClick={incrementLikes}>like</button><br />
-        {blog.user.name}
+        {blog.user.name}<br />
+        <button onClick={removeBlog}>remove</button>
       </div>
     )
   }
