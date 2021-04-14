@@ -1,3 +1,17 @@
+body {
+  margin: 50px;
+}
+.blog {
+  padding: 10px;
+  border: 2px solid grey;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+.blog a {
+  font-family: monospace;
+}
+
 .success {
   padding: 5px;
   background-color: lightgrey;
