@@ -46,12 +46,12 @@ const Blog = ({ blog }) => {
       </div>
     )
   }
-  
+
   return (
-  <div className='blog'>
-    {blog.title} {blog.author}
-    <button onClick={toggleView}>view</button>
-  </div>  
+    <div className='blog'>
+      {blog.title} {blog.author}
+      <button onClick={toggleView}>view</button>
+    </div>
   )
 }
 
