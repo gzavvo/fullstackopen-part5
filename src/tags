@@ -1,0 +1,75 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/xav/projects/fullstackopen-part5/bloglist-frontend/src/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210110.0/
+.blog	style.css	/^.blog {$/;"	c
+.blog a	style.css	/^.blog a {$/;"	s
+.error	style.css	/^.error {$/;"	c
+.success	style.css	/^.success {$/;"	c
+App	App.js	/^const App = () => {$/;"	C
+Authorization	services/blogs.js	/^    headers: { Authorization: token }$/;"	p	class:config.headers
+Blog	components/Blog.js	/^const Blog = ({ blog }) => {$/;"	C
+BlogForm	components/BlogForm.js	/^const BlogForm = ({ handleCreateBlog }) => {$/;"	C
+LoginForm	components/LoginForm.js	/^const LoginForm = ({ handleLogin }) => {$/;"	C
+Notification	components/Notification.js	/^const Notification = ({ message, type }) => {$/;"	C
+Togglable	components/Togglable.js	/^const Togglable = React.forwardRef((props, ref) => {$/;"	C
+author	components/Blog.js	/^      author: blog.author,$/;"	p	class:newBlogObject
+baseUrl	services/blogs.js	/^const baseUrl = '\/api\/blogs'$/;"	C
+baseUrl	services/login.js	/^const baseUrl = 'api\/login'$/;"	C
+blogFormRef	App.js	/^  const blogFormRef = useRef()$/;"	C
+blogUrl	services/blogs.js	/^  const blogUrl = baseUrl + '\/' + blogId$/;"	C
+blogUrl	services/blogs.js	/^  const blogUrl = baseUrl + '\/' + blogObject.id$/;"	C
+body	style.css	/^body {$/;"	s
+buttonLabel	components/Togglable.js	/^  buttonLabel: PropTypes.string.isRequired$/;"	p	class:Togglable.propTypes
+config	services/blogs.js	/^  const config = {$/;"	c
+getAll	services/blogs.js	/^const getAll = () => {$/;"	C
+handleCreateBlog	App.js	/^  const handleCreateBlog = async (blogObject) => {$/;"	C
+handleCreateBlog	components/BlogForm.js	/^  handleCreateBlog: PropTypes.func.isRequired$/;"	p	class:BlogForm.propTypes
+handleLogin	components/LoginForm.js	/^  handleLogin: PropTypes.func.isRequired$/;"	p	class:LoginForm.propTypes
+handleLogout	App.js	/^  const handleLogout = () => {$/;"	C
+handleSubmit	components/BlogForm.js	/^  const handleSubmit = async (event) => {$/;"	C
+handleSubmit	components/LoginForm.js	/^  const handleSubmit = async (event) => {$/;"	C
+headers	services/blogs.js	/^    headers: { Authorization: token }$/;"	c	class:config
+id	components/Blog.js	/^      id: blog.id,$/;"	p	class:newBlogObject
+incrementLikes	components/Blog.js	/^  const incrementLikes = async () => {$/;"	C
+likes	components/Blog.js	/^      likes: likes + 1,$/;"	p	class:newBlogObject
+login	services/login.js	/^const login = async credentials => {$/;"	C
+newBlogObject	components/Blog.js	/^    const newBlogObject = {$/;"	c
+propTypes	components/BlogForm.js	/^BlogForm.propTypes = {$/;"	c	class:BlogForm
+propTypes	components/LoginForm.js	/^LoginForm.propTypes = {$/;"	c	class:LoginForm
+propTypes	components/Togglable.js	/^Togglable.propTypes = {$/;"	c	class:Togglable
+remove	services/blogs.js	/^const remove = (blogId) => {$/;"	C
+removeBlog	components/Blog.js	/^  const removeBlog = async () => {$/;"	C
+request	services/blogs.js	/^  const request = axios.delete(blogUrl, config)$/;"	C
+request	services/blogs.js	/^  const request = axios.get(baseUrl)$/;"	C
+request	services/blogs.js	/^  const request = axios.put(blogUrl, blogObject, config)$/;"	C
+response	services/blogs.js	/^  const response = await axios.post(baseUrl, newObject, config)$/;"	C
+response	services/login.js	/^  const response = await axios.post(baseUrl, credentials)$/;"	C
+returnedBlog	App.js	/^      const returnedBlog = await blogService.create(blogObject)$/;"	C
+setAreDetailsVisible	components/Blog.js	/^  const [areDetailsVisible, setAreDetailsVisible] = useState(false)$/;"	C
+setAuthor	components/BlogForm.js	/^  const [author, setAuthor] = useState('')$/;"	C
+setBlogs	App.js	/^  const [blogs, setBlogs] = useState([])$/;"	C
+setIsRemoved	components/Blog.js	/^  const [isRemoved, setIsRemoved] = useState(false)$/;"	C
+setLikes	components/Blog.js	/^  const [likes, setLikes] = useState(blog.likes)$/;"	C
+setNotification	App.js	/^  const [notification, setNotification] = useState(null)$/;"	C
+setNotificationType	App.js	/^  const [notificationType, setNotificationType] = useState(null)$/;"	C
+setPassword	components/LoginForm.js	/^  const [password, setPassword] = useState('')$/;"	C
+setTitle	components/BlogForm.js	/^  const [title, setTitle] = useState('')$/;"	C
+setToken	services/blogs.js	/^const setToken = newToken => {$/;"	C
+setUrl	components/BlogForm.js	/^  const [url, setUrl] = useState('')$/;"	C
+setUser	App.js	/^  const [user, setUser] = useState(null)$/;"	C
+setUsername	components/LoginForm.js	/^  const [username, setUsername] = useState('')$/;"	C
+title	components/Blog.js	/^      title: blog.title,$/;"	p	class:newBlogObject
+toggleView	components/Blog.js	/^  const toggleView = () => {$/;"	C
+token	services/blogs.js	/^let token = null$/;"	v
+update	services/blogs.js	/^const update = (blogObject) => {$/;"	C
+url	components/Blog.js	/^      url: blog.url$/;"	p	class:newBlogObject
+user	App.js	/^      const user = await loginService.login(userObject)$/;"	C
+user	components/Blog.js	/^      user: blog.user.id,$/;"	p	class:newBlogObject
