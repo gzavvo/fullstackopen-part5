@@ -10,7 +10,7 @@ const Blog = ({ blog }) => {
     setAreDetailsVisible(!areDetailsVisible)
   }
 
-  const incrementLikes = async (event) => {
+  const incrementLikes = async () => {
     const newBlogObject = {
       id: blog.id,
       user: blog.user.id,
@@ -23,7 +23,7 @@ const Blog = ({ blog }) => {
     setLikes(likes + 1)
   }
 
-  const removeBlog = async (event) => {
+  const removeBlog = async () => {
     if (window.confirm(`Do you really want to remove the blog ${blog.title}?`)) {
       await blogService.remove(blog.id)
       setIsRemoved(true)
