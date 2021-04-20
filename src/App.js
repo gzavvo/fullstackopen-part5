@@ -45,7 +45,7 @@ const App = () => {
       setTimeout(() => {
         setNotification(null)
         setNotificationType(null)
-      }, 3000)
+      }, 5000)
     }
   }
 
@@ -64,7 +64,7 @@ const App = () => {
       setTimeout(() => {
         setNotification(null)
         setNotificationType(null)
-      }, 3000)
+      }, 5000)
       return true
     } catch(exception) {
       setNotificationType('error')
@@ -72,7 +72,7 @@ const App = () => {
       setTimeout(() => {
         setNotification(null)
         setNotificationType(null)
-      }, 3000)
+      }, 5000)
     }
   }
 
@@ -94,11 +94,13 @@ const App = () => {
       <Togglable buttonLabel='add blog'ref={blogFormRef}>
         <BlogForm handleCreateBlog={handleCreateBlog} />
       </Togglable>
-      {blogs
-        .sort((a, b) => b.likes - a.likes)
-        .map(blog =>
-          <Blog key={blog.id} blog={blog} />
-        )}
+      <div id="blog-list">
+        {blogs
+          .sort((a, b) => b.likes - a.likes)
+          .map(blog =>
+            <Blog key={blog.id} blog={blog} />
+          )}
+      </div>
     </div>
   )
 }

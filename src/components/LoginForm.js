@@ -21,6 +21,7 @@ const LoginForm = ({ handleLogin }) => {
         <div>
           username:
           <input
+            className="username"
             type="text"
             value={username}
             name="Username"
@@ -30,6 +31,7 @@ const LoginForm = ({ handleLogin }) => {
         <div>
           password:
           <input
+            className="password"
             type="text"
             value={password}
             name="Password"
