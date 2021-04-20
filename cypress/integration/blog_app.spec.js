@@ -1,12 +1,19 @@
 describe('Blog app', function() {
   beforeEach(function() {
     cy.request('POST', 'http://localhost:3003/api/testing/reset')
+    cy.clearLocalStorage()
     const user = {
       name: 'Xavier Barral',
       username: 'gzavvo',
       password: 'secret'
     }
+    const user2 = {
+      name: 'Pirate',
+      username: 'pirate',
+      password: 'secret'
+    }
     cy.request('POST', 'http://localhost:3003/api/users', user)
+    cy.request('POST', 'http://localhost:3003/api/users', user2)
     cy.visit('http://localhost:3000')
   })
 
@@ -39,6 +46,7 @@ describe('Blog app', function() {
 
   describe('When logged in', function() {
     beforeEach(function() {
+      cy.clearLocalStorage()
       cy.login({ username: 'gzavvo', password: 'secret' })
     })
 
@@ -56,7 +64,7 @@ describe('Blog app', function() {
         .contains('new title cypres')
     })
 
-    describe.only('and various blog have been created', function() {
+    describe('and various blog have been created', function() {
       beforeEach(function() {
         cy.createBlog({
           title: 'blog 1',
@@ -79,7 +87,20 @@ describe('Blog app', function() {
       it('user can like a blog', function() {
         cy.get('#blog-list').contains('blog 3').contains('view').click()
         cy.get('#blog-list').contains('blog 3').contains('like').click()
+      })
 
+      it('user can remove a blog', function() {
+        cy.get('#blog-list').contains('blog 3').contains('view').click()
+        cy.get('#blog-list').contains('blog 3').contains('remove').click()
+      })
+
+      it('other user cannot delete the blog', function() {
+        cy.clearLocalStorage()
+        cy.login({ username: 'pirate', password: 'secret' })
+        cy.get('#blog-list').contains('blog 3').contains('view').click()
+        cy.get('#blog-list').contains('blog 3').contains('remove').click()
+
+        cy.get('#blog-list').contains('blog 3')
       })
     })
   })
