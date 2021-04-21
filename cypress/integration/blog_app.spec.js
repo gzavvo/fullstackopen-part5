@@ -1,7 +1,6 @@
 describe('Blog app', function() {
   beforeEach(function() {
     cy.request('POST', 'http://localhost:3003/api/testing/reset')
-    cy.clearLocalStorage()
     const user = {
       name: 'Xavier Barral',
       username: 'gzavvo',
@@ -17,14 +16,14 @@ describe('Blog app', function() {
     cy.visit('http://localhost:3000')
   })
 
-  it('Login form is shown', function() {
-    cy.get('form')
-      .should('contain', 'username')
-      .and('contain', 'password')
-      .and('contain', 'log in')
-  })
-
   describe('Login', function() {
+    it('Login form is shown', function() {
+      cy.get('form')
+        .should('contain', 'username')
+        .and('contain', 'password')
+        .and('contain', 'log in')
+    })
+
     it('succeeds with correct credentials', function() {
       cy.get('input.username').type('gzavvo')
       cy.get('input.password').type('secret')
@@ -44,13 +43,28 @@ describe('Blog app', function() {
     })
   })
 
-  describe('When logged in', function() {
+  describe('User', function() {
     beforeEach(function() {
-      cy.clearLocalStorage()
       cy.login({ username: 'gzavvo', password: 'secret' })
+      cy.createBlog({
+        title: 'blog 1',
+        author: 'author 1',
+        url: 'url 1'
+      })
+      cy.createBlog({
+        title: 'blog 2',
+        author: 'author 2',
+        url: 'url 2'
+      })
+      cy.createBlog({
+        title: 'blog 3',
+        author: 'author 3',
+        url: 'url 3'
+      })
+      cy.visit('http://localhost:3000')
     })
 
-    it('a new blog can be created', function() {
+    it('can create a new blog', function() {
       cy.contains('add blog').click()
       cy.get('#title').type('new title cypress')
       cy.get('#author').type('author cypress')
@@ -64,44 +78,59 @@ describe('Blog app', function() {
         .contains('new title cypres')
     })
 
-    describe('and various blog have been created', function() {
-      beforeEach(function() {
-        cy.createBlog({
-          title: 'blog 1',
-          author: 'author 1',
-          url: 'url 1'
+    it('can like a blog', function() {
+      cy.get('#blog-list').contains('blog 3').contains('view').click()
+      cy.get('#blog-list').contains('blog 3').contains('like').click()
+    })
+
+    it('can remove a blog', function() {
+      cy.get('#blog-list').contains('blog 3').contains('view').click()
+      cy.get('#blog-list').contains('blog 3').contains('remove').click()
+    })
+
+    it('other user cannot delete the blog', function() {
+      cy.clearLocalStorage()
+      cy.login({ username: 'pirate', password: 'secret' })
+      cy.get('#blog-list').contains('blog 3').contains('view').click()
+      cy.get('#blog-list').contains('blog 3').contains('remove').click()
+
+      cy.get('#blog-list').contains('blog 3')
+    })
+  })
+
+  describe.only('Bloglist', function() {
+    beforeEach(function() {
+      cy.login({ username: 'gzavvo', password: 'secret' })
+      cy.createBlog({
+        title: 'most liked',
+        author: 'Mr First',
+        url: 'http: truc',
+        likes: 4
+      })
+      cy.createBlog({
+        title: 'last liked',
+        author: 'Mr Third',
+        url: 'http: truc',
+        likes: 0
+      })
+      cy.createBlog({
+        title: 'second liked',
+        author: 'Mr Second',
+        url: 'http: truc',
+        likes: 2
+      })
+      cy.visit('http://localhost:3000')
+    })
+
+    it('has a descending likes order', function() {
+      cy.get('#blog-list button')
+        .each(el => cy.wrap(el).click())
+      cy.get('#blog-list .likes')
+        .then((blogList) => {
+          const likesArr = blogList.map((i, el) => el.textContent)
+          cy.wrap(likesArr)
+            .should('be.equal', likesArr.sort((a, b) => { b -a}))
         })
-        cy.createBlog({
-          title: 'blog 2',
-          author: 'author 2',
-          url: 'url 2'
-        })
-        cy.createBlog({
-          title: 'blog 3',
-          author: 'author 3',
-          url: 'url 3'
-        })
-        cy.visit('http://localhost:3000')
-      })
-
-      it('user can like a blog', function() {
-        cy.get('#blog-list').contains('blog 3').contains('view').click()
-        cy.get('#blog-list').contains('blog 3').contains('like').click()
-      })
-
-      it('user can remove a blog', function() {
-        cy.get('#blog-list').contains('blog 3').contains('view').click()
-        cy.get('#blog-list').contains('blog 3').contains('remove').click()
-      })
-
-      it('other user cannot delete the blog', function() {
-        cy.clearLocalStorage()
-        cy.login({ username: 'pirate', password: 'secret' })
-        cy.get('#blog-list').contains('blog 3').contains('view').click()
-        cy.get('#blog-list').contains('blog 3').contains('remove').click()
-
-        cy.get('#blog-list').contains('blog 3')
-      })
     })
   })
 })

@@ -40,7 +40,7 @@ const Blog = ({ blog }) => {
         {blog.title} by {blog.author}
         <button onClick={toggleView}>hide</button><br />
         <a href={blog.url}>{blog.url}</a><br />
-        {likes}<button onClick={incrementLikes}>like</button><br />
+        <span className='likes'>{likes}</span><button onClick={incrementLikes}>like</button>
         {blog.user.name}<br />
         <button onClick={removeBlog}>remove</button>
       </div>
